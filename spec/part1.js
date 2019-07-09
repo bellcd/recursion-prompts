@@ -218,6 +218,7 @@
       });
 
       it('should return true for even numbers', function() {
+
         expect(isEven(48)).to.be.true;
         expect(isEven(0)).to.be.true;
       });
@@ -397,7 +398,6 @@
         expect(exponent(9,1)).to.equal(9);
         expect(exponent(2300,1)).to.equal(2300);
       });
-
 
       it('should accept negative integer for exponent', function() {
         expect(exponent(4,-2)).to.equal(0.0625);
