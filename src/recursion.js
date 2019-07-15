@@ -275,7 +275,72 @@ var multiply = function(x, y) {
 
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods to arrive at an approximate quotient (ignore decimal endings).
+
+// declare z
+// base cases:
+  // x is pos
+    // y is pos, x - y is less than 0, return 0
+    // y is neg, x + y is less than 0, return 0
+  // x is neg
+    // y is pos, x - y is less than 0, return 0
+    // y is neg, x + y is less than 0, return 0
+// base case, x + y is less than 0
+// recursive cases
+  // x & y are both pos
+    // z is x - y
+    // decrement z until 1
+    // return z + fn(x - y, y)
+  // x is pos y is neg
+    // z is x + y
+    // decrement z until 1
+    // return z + fn(x + y, y) ?? new base case
+  // if x & y are both neg
+    // z is x - y
+    // increment z until -1
+    // return z + fn(x - y, y)
+  // x is neg y is pos
+    // z is x + y
+    // increment z until -1
+    // return z + fn(x + y, y)
 var divide = function(x, y) {
+      var z = 0;
+      if (y === 0) {
+        return NaN;
+      } else if (x === 0) {
+        return y > 0 ? 0 : -0;
+      } else if (x === y) {
+        return 1;
+      } else if (-(x) === y || x === -(y)) {
+        return -1;
+      } else if (x - y < 0 && ((x > 0 && y > 0) || (x < 0 && y > 0))) {
+        return 0;
+      } else if (x + y < 0 && ((x > 0 && y < 0) || (x < 0 && y < 0))) {
+        return 0;
+      } else if (x > 0 && y > 0) {
+        z = x - y;
+        while (z > 1) {
+          z--;
+        }
+        return z + divide(x - y, y);
+      } else if (x > 0 && y < 0) {
+        z = x + y;
+        while (z > 1) {
+          z--;
+        }
+        return z + divide(x + y, y);
+      } else if (x < 0 && y < 0) {
+        z = x - y;
+        while (z < -1) {
+          z++;
+        }
+        return z + divide(x - y, y);
+      } else if (x < 0 && y > 0) {
+        z = x + y;
+        while (z < -1) {
+          z++;
+        }
+        return z + divide(x + y, y);
+      }
 };
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
