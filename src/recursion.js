@@ -256,32 +256,22 @@ var modulo = function(x, y) {
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
+
+// base case, x or y is 0, return 0
+// recursive case,
+  // x & y are both positive OR x is negative y is positive
+    // return x + fn(x, y - 1)
+  // if x & y are both negative OR x is positive y is negative
+    // return -(x) + fn(x, y + 1)
 var multiply = function(x, y) {
-  // base case, y is 1, return x
-  // recursive case, x + (x, y - 1)
-
-  // both are neg, make y pos
-  // x is neg, y is pos, switch signs
-
-  if (x < 0 && y < 0) {
-    y = -y;
-  } else if (x > 0 && y < 0) {
-    x = -x;
-    y = -y;
-  }
-  // TODO: how do you repeatedly add a negative number to itself to get a positive number?
-  if (y === 1) {
-    return x;
-  } else if (y === -1) {
-    return -x;
-  } else if (x === 0 || y === 0) {
-    return 0;
-  } else {
-    return x + (y > 0 ? multiply(x, y - 1) : multiply(x, y + 1));
-  }
+    if (x === 0 || y === 0) {
+      return 0;
+    } else if ((x > 0 && y > 0) || (x < 0 && y > 0)) {
+      return x + multiply(x, y - 1);
+    } else if ((x < 0 && y < 0) || (x > 0 && y < 0)) {
+      return -(x) + multiply(x, y + 1);
+    }
 };
-
-
 
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods to arrive at an approximate quotient (ignore decimal endings).
