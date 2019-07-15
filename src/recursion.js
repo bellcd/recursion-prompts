@@ -337,7 +337,7 @@ var divide = function(x, y) {
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
 var gcd = function(x, y) {
   // TODO: algorithm structure from Khan academy, need to review the why ...
-
+    if (x < 0 || y < 0) return null;
     if (x === 0) {
       return y;
     } else if (y === 0) {
@@ -352,6 +352,12 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+  if (str1 === str2) return true;
+  if (str1 === '' || str2 === '') return false;
+
+  if (str1[0] === str2[0]) {
+    return compareStr(str1.slice(1), str2.slice(1));
+  }
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
