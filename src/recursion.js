@@ -304,40 +304,27 @@ var multiply = function(x, y) {
     // return z + fn(x + y, y)
 var divide = function(x, y) {
       var z = 0;
-      if (y === 0) {
-        return NaN;
-      } else if (x === 0) {
-        return y > 0 ? 0 : -0;
-      } else if (x === y) {
-        return 1;
-      } else if (-(x) === y || x === -(y)) {
-        return -1;
-      } else if (x - y < 0 && ((x > 0 && y > 0) || (x < 0 && y > 0))) {
-        return 0;
-      } else if (x + y < 0 && ((x > 0 && y < 0) || (x < 0 && y < 0))) {
-        return 0;
-      } else if (x > 0 && y > 0) {
+      if (y === 0) return NaN;
+      if (x === 0) return y > 0 ? 0 : -0;
+      if (x === y) return 1;
+      if (-(x) === y || x === -(y)) return -1;
+      if ((x - y < 0 && ((x > 0 && y > 0) || (x < 0 && y > 0)))) return 0;
+      if ((x + y < 0 && ((x > 0 && y < 0) || (x < 0 && y < 0)))) return 0;
+
+      if ((x > 0 && y > 0) || ((x < 0 && y < 0))) {
         z = x - y;
-        while (z > 1) {
-          z--;
+        if (x > 0) {
+          while (z > 1) z--;
+        } else {
+          while (z < -1) z++;
         }
         return z + divide(x - y, y);
-      } else if (x > 0 && y < 0) {
+      } else if ((x > 0 && y < 0) || ((x < 0 && y > 0))) {
         z = x + y;
-        while (z > 1) {
-          z--;
-        }
-        return z + divide(x + y, y);
-      } else if (x < 0 && y < 0) {
-        z = x - y;
-        while (z < -1) {
-          z++;
-        }
-        return z + divide(x - y, y);
-      } else if (x < 0 && y > 0) {
-        z = x + y;
-        while (z < -1) {
-          z++;
+        if (x > 0) {
+          while (z > 1) z--;
+        } else {
+          while (z < -1) z++;
         }
         return z + divide(x + y, y);
       }
