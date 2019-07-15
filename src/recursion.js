@@ -234,7 +234,7 @@ var modulo = function(x, y) {
   //   // both are positive, (x - y, y)
   //   // else, (x + y, y)
   //
-  //   // ??????
+  // TODO: work on modulo
   // if (y === 1 || y === -1 || x === 0) {
   //   return 0;
   // } else if (x === 0 && y === 0) {
@@ -269,7 +269,7 @@ var multiply = function(x, y) {
     x = -x;
     y = -y;
   }
-  // how do you repeatedly add a negative number to itself to get a positive number?
+  // TODO: how do you repeatedly add a negative number to itself to get a positive number?
   if (y === 1) {
     return x;
   } else if (y === -1) {
@@ -294,13 +294,13 @@ var divide = function(x, y) {
 // http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
 var gcd = function(x, y) {
-  // algorithm structure from Khan academy, need to review the why ...
+  // TODO: algorithm structure from Khan academy, need to review the why ...
 
     if (x === 0) {
       return y;
     } else if (y === 0) {
       return x;
-    } else if () {
+    } else {
       return gcd(y, x % y);
     }
 };
