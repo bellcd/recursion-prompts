@@ -556,16 +556,23 @@ var capitalizeWords = function(array) {
   // base case, arr copy is empty, return []
   // recursive case
     // return first element of arrcopy, uppercased, concatted with recursive call to rest of array
-    
+
   const arrCopy = array.slice();
   if (arrCopy.length === 0) return [];
   return [arrCopy[0].toUpperCase()].concat(capitalizeWords(array.slice(1)));
-
 };
 
 // 28. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car','poop','banana']); // ['Car','Poop','Banana']
 var capitalizeFirst = function(array) {
+  // make copy of arr
+  // base case, arr copy is empty, return []
+  // recursive case
+    // return first letter of first element of arrcopy, uppercased, concatted with the rest of the word, that whole thing concatted with recursive call to rest of array
+
+  const arrCopy = array.slice();
+  if (arrCopy.length === 0) return [];
+  return [arrCopy[0][0].toUpperCase().concat(arrCopy[0].substring(1))].concat(capitalizeFirst(array.slice(1)));
 };
 
 // 29. Return the sum of all even numbers in an object containing nested objects.
