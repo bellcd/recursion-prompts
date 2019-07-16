@@ -585,6 +585,29 @@ var capitalizeFirst = function(array) {
 // };
 // nestedEvenSum(obj1); // 10
 var nestedEvenSum = function(obj) {
+  // look at every value in a nested object
+  // if that value is an even number, add it
+
+  // create array of object values
+  // create filtered array of object values that are objects
+  // calculate sum of any array element numbers that are even
+  // base case:
+    // filtered array contains NO objects, return sum
+  // recursive case
+    // return sum + reduction through filtered array, cb returns recursive call to each filtered array elem
+
+  const objValues = Object.values(obj);
+  const valuesThatAreObjects = objValues.filter(value => Object.prototype.toString.call(value) === '[object Object]');
+  const sum = objValues.reduce((acc, currentValue) => {
+    if (typeof currentValue === 'number' && currentValue % 2 === 0) {
+      acc += currentValue;
+    }
+    return acc;
+  }, 0);
+  if (valuesThatAreObjects.length === 0) return sum;
+  return sum + valuesThatAreObjects.reduce((acc, currentValue) => {
+    return acc + nestedEvenSum(currentValue);
+  }, 0);
 };
 
 // 30. Flatten an array containing nested arrays.
