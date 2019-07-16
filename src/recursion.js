@@ -433,6 +433,27 @@ var rMap = function(array, callback) {
 // countKeysInObj(obj, 'r') // 1
 // countKeysInObj(obj, 'e') // 2
 var countKeysInObj = function(obj, key) {
+  // create keys array from obj
+  // filter array to only contain keys that match key
+
+  // base case:
+    // all values in the obj are NOT an obj
+    // return array.length
+  // recursive case
+    // return array.length + reduce() recursive call for each value that is an obj
+
+  const keys = Object.keys(obj);
+  const filteredKeys = keys.filter(k => k === key);
+
+  const values = Object.values(obj);
+  const valuesThatAreObjects = values.filter(elem => Object.prototype.toString.call(elem) === '[object Object]');
+  if (valuesThatAreObjects.length === 0) {
+    return filteredKeys.length;
+  } else {
+    return filteredKeys.length + valuesThatAreObjects.reduce((acc, currentObj) => {
+      return acc + countKeysInObj(currentObj, key);
+    }, 0)
+  }
 };
 
 // 23. Write a function that counts the number of times a value occurs in an object.
