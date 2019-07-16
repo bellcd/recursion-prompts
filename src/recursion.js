@@ -535,6 +535,17 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
+  // base cases:
+    // n is neg, return null
+    // n is 0, return 0
+    // n is 1, return 1
+  // recursive case:
+    // return recursive call to previous fibonacci number + recursive call to previous than previous fibonacci number
+
+    if (n < 0) return null;
+    if (n === 0) return 0;
+    if (n === 1) return 1;
+    return nthFibo(n - 1) + nthFibo(n - 2);
 };
 
 // 27. Given an array of words, return a new array containing each word capitalized.
