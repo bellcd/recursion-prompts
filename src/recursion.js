@@ -511,6 +511,22 @@ var replaceKeysInObj = function(obj, oldKey, newKey) {
 // fibonacci(5); // [0,1,1,2,3,5]
 // Note: The 0 is not counted.
 var fibonacci = function(n) {
+  // base cases:
+    // n is 0 or neg, return null
+    // n is 1, return [0,1]
+  // recursive cases:
+    // result = calculate the n Fibonacci number
+    // concat recursive call of n - 1 with result
+
+  if (n <= 0) return null;
+  if (n === 1) return [0,1];
+  let result, prev1 = 0, prev2 = 1;
+  for (let i = 2; i <= n; i++) {
+    result = prev1 + prev2;
+    prev1 = prev2;
+    prev2 = result;
+  }
+  return fibonacci(n - 1).concat(result);
 };
 
 // 26. Return the Fibonacci number located at index n of the Fibonacci sequence.
