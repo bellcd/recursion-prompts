@@ -613,6 +613,17 @@ var nestedEvenSum = function(obj) {
 // 30. Flatten an array containing nested arrays.
 // flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
 var flatten = function(array) {
+  // reduce through current array
+    // base case, current element is NOT an array
+      // return acc concatted with current element
+    // recursive case
+      // return acc concatted with recursive call to current element
+  return array.reduce((acc, currentValue) => {
+    if (!Array.isArray(currentValue)) {
+      return acc.concat(currentValue);
+    }
+    return acc.concat(flatten(currentValue));
+  }, [])
 };
 
 // 31. Given a string, return an object containing tallies of each letter.
