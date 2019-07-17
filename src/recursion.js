@@ -719,6 +719,46 @@ var alternateSign = function(array, count = 0) {
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
 var numToText = function(str) {
+  // base case, str is empty, return ''
+  // recursive case:
+    // create value as ''
+    // if first letter is a number, replace that number with appropriate word
+    // concat first letter of string with recursive call to str sliced from 1
+
+  if (str === '') return '';
+  let value = str[0];
+  if (typeof Number.parseInt(str[0]) === 'number') {
+    switch (str[0]) {
+      case '1':
+        value = 'one';
+        break;
+      case '2':
+        value = 'two';
+        break;
+      case '3':
+        value = 'three';
+        break;
+      case '4':
+        value = 'four';
+        break;
+      case '5':
+        value = 'five';
+        break;
+      case '6':
+        value = 'six';
+        break;
+      case '7':
+        value = 'seven';
+        break;
+      case '8':
+        value = 'eight';
+        break;
+      case '9':
+        value = 'nine';
+        break;
+    }
+  }
+  return value.concat(numToText(str.slice(1)));
 };
 
 
