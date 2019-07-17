@@ -683,7 +683,7 @@ var minimizeZeroes = function(array) {
     // if array[0] is zero
       // while next element is also zero, increment index
     // return array[0] concatted with recursive call to array sliced from index
-    
+
   if (array.length === 0) return [];
   let index = 1;
   if (array[0] === 0) {
@@ -698,7 +698,21 @@ var minimizeZeroes = function(array) {
 // their original sign. The first number in the index always needs to be positive.
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
-var alternateSign = function(array) {
+var alternateSign = function(array, count = 0) {
+  // base case, array has length 0, return []
+  // recursive case:
+    // if count is zero, don't negate the array element
+    // if count is even, make sure element is pos
+    // if count is odd, make sure element is neg
+    // return [-1 * array element] concatted with recursive call to sliced array, incremented count
+  if (array.length === 0) return [];
+  let value = array[0];
+  if (count === 0 || count % 2 === 0) {
+    if (value < 0) value *= -1;
+  } else {
+    if (value > 0) value *= -1;
+  }
+  return [value].concat(alternateSign(array.slice(1), count + 1)); // TODO: what can I do here instead of using a count parameter?
 };
 
 // 36. Given a string, return a string with digits converted to their word equivalent.
