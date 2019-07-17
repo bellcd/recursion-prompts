@@ -677,6 +677,21 @@ var augmentElements = function(array, aug) {
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
 var minimizeZeroes = function(array) {
+  // base case, array is empty, return []
+  // recursive case
+    // create index to be 1
+    // if array[0] is zero
+      // while next element is also zero, increment index
+    // return array[0] concatted with recursive call to array sliced from index
+    
+  if (array.length === 0) return [];
+  let index = 1;
+  if (array[0] === 0) {
+    while (array[index] === 0) {
+      index++;
+    }
+  }
+  return [array[0]].concat(minimizeZeroes(array.slice(index)));
 };
 
 // 35. Alternate the numbers in an array between positive and negative regardless of
