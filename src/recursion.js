@@ -773,7 +773,7 @@ var tagCount = function(tag, node = document) {
     // return value + reduction through HTMLCollection at children property.
       // acc initial value of 0
       // acc + recursive invocation of currentValue
-  
+
   let value = node.localName === tag ? 1 : 0;
   if (node.children.length === 0) return value;
   return value + Array.from(node.children).reduce((acc, currentValue) => {
@@ -786,6 +786,37 @@ var tagCount = function(tag, node = document) {
 // binarySearch(array, 5) // 5
 // https://www.khanacademy.org/computing/computer-science/algorithms/binary-search/a/binary-search
 var binarySearch = function(array, target, min, max) {
+  // base cases:
+    // min is greater than max, return -1
+    // assign min & max if they're undefined
+    // calculate value at middle index
+    // if value equals target, return middle index
+  // recursive case:
+    // if value is greater than target, set max to middle index - 1
+    // if value is less than target, set min to middle index + 1
+    // return recursive call with new min or max value
+
+  // debugger;
+  min = 0;
+  max = array.length - 1;
+  let middleIndex = Math.floor(array.length / 2);
+  let value = array[middleIndex];
+  if (value === target) {
+    console.log('array: ', array, 'target: ', target, 'array[middleIndex]: ', array[middleIndex], 'middleIndex: ', middleIndex);
+    return middleIndex;
+  }
+  if (array.length === 0) return null;
+  let result, offset = 0;
+  if (value > target) {
+    max = middleIndex - 1;
+  } else {
+    min = middleIndex + 1;
+    offset = min;
+  }
+  result = binarySearch(array.slice(min, max + 1), target, min, max);
+  return result === null ? result : offset + result;
+
+
 };
 
 // 39. Write a merge sort function.
