@@ -785,7 +785,7 @@ var tagCount = function(tag, node = document) {
 // var array = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 // binarySearch(array, 5) // 5
 // https://www.khanacademy.org/computing/computer-science/algorithms/binary-search/a/binary-search
-var binarySearch = function(array, target, min, max) {
+var binarySearch = function(array, target) {
   // base cases:
     // min is greater than max, return -1
     // assign min & max if they're undefined
@@ -796,13 +796,11 @@ var binarySearch = function(array, target, min, max) {
     // if value is less than target, set min to middle index + 1
     // return recursive call with new min or max value
 
-  // debugger;
-  min = 0;
-  max = array.length - 1;
+  let min = 0;
+  let max = array.length - 1;
   let middleIndex = Math.floor(array.length / 2);
   let value = array[middleIndex];
   if (value === target) {
-    console.log('array: ', array, 'target: ', target, 'array[middleIndex]: ', array[middleIndex], 'middleIndex: ', middleIndex);
     return middleIndex;
   }
   if (array.length === 0) return null;
@@ -813,7 +811,7 @@ var binarySearch = function(array, target, min, max) {
     min = middleIndex + 1;
     offset = min;
   }
-  result = binarySearch(array.slice(min, max + 1), target, min, max);
+  result = binarySearch(array.slice(min, max + 1), target);
   return result === null ? result : offset + result;
 
 
