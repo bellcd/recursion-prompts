@@ -859,4 +859,75 @@ var mergeSort = function(array) {
 // console.log(obj2); // {a:1,b:{bb:{bbb:2}},c:3}
 // obj1 === obj2 // false
 var clone = function(input) {
+  // assume:
+    // only arrays or objects will be top level input
+    
+  // create array of input or input's entries
+  // filter to only elements that are objects or arrays
+  // return reduction through filtered array,
+    // base case, filtered array is empty, return input
+    // recursive case
+      // cb returning
+        // array: acc concatted with recursive call
+        // obj: acc with new property name and recursive call as value
+
+  let copy, starting, workArray = false;
+  if (Array.isArray(input)) {
+    workArray = true;
+    starting = [];
+    copy = input.slice();
+  } else {
+    starting = {};
+    copy = Object.entries(input);
+  }
+  if (copy.length <= 1) {
+    // there's 1 or less element in input
+    if (workArray) {
+      // input is an array
+      if (copy.length === 0) {
+        return [];
+      }
+      if (Array.isArray(copy[0]) || Object.prototype.toString.call(copy[0]) === '[object Object]') {
+        // the element in input is an array / object
+        return [clone(copy[0])];
+      }
+      // the element in input is NOT an array / object
+      return [copy[0]];
+    } else {
+      if (copy.length === 0) {
+        return {};
+      }
+      // input is an object
+      if (Array.isArray(copy[0][1]) || Object.prototype.toString.call(copy[0][1]) === '[object Object]') {
+        // the element in input is an array / object
+        return {
+          [copy[0][0]]: clone(copy[0][1])
+        }
+      }
+      // the element in input is NOT an array / object
+      return {
+        [copy[0][0]]: copy[0][1]
+      }
+    }
+  }
+  // there's more than 1 element in input
+  return copy.reduce((acc, currentValue) => {
+    if (workArray) {
+      // reduce lvl is an array
+      if (Array.isArray(currentValue) || Object.prototype.toString.call(currentValue) === '[object Object]') {
+        acc.push(clone(currentValue));
+        return acc;
+      }
+      acc.push(currentValue);
+      return acc;
+    } else {
+      // reduce lvl is an object
+      if (Array.isArray(currentValue[1]) || Object.prototype.toString.call(currentValue[1]) === '[object Object]') {
+        acc[currentValue[0]] = clone(currentValue[1]);
+        return acc;
+      }
+      acc[currentValue[0]] = currentValue[1];
+      return acc;
+    }
+  }, starting);
 };
