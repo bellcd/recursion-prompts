@@ -227,31 +227,23 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
-  // // base cases
-  //   // both are positive OR x is neg and y is pos, x < y
-  //   // both are negative OR x is pos and y is neg, x > y
-  // // recursive cases
-  //   // both are positive, (x - y, y)
-  //   // else, (x + y, y)
-  //
-  // TODO: work on modulo
-  // if (y === 1 || y === -1 || x === 0) {
-  //   return 0;
-  // } else if (x === 0 && y === 0) {
-  //   return NaN;
-  // } else if (((x >= 0 && y >= 0) || (x <= 0 && y >= 0)) && x <= y) {
-  //   return x;
-  // } else if ( ((x <= 0 && y <= 0) || (x >= 0 && y <= 0)) && x >= y) {
-  //   return x;
-  // } else if ((x >= 0 && y >= 0) || (x <= 0 && y <= 0)) {
-  //   return modulo(x - y, y);
-  // } else {
-  //   return modulo(x + y, y);
-  // }
+  if (y === 0) return NaN;
+  if (x === 0) return 0;
+  if (x === -0) return -0;
 
-
-  // only matters if x is negative
-
+  if (x > 0 && y > 0) {
+    if (x - y < 0) return (x - y) + y;
+    return modulo(x - y, y);
+  } else if (x < 0 && y < 0) {
+    if (x - y > 0) return (x - y) + y;
+    return modulo(x - y, y);
+  } else if (x > 0 && y < 0) {
+    if (x + y < 0) return (x + y) - y;
+    return modulo(x + y, y);
+  } else if (x < 0 && y > 0) {
+    if (x + y > 0) return (x + y) - y;
+    return modulo(x + y, y);
+  }
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator or
