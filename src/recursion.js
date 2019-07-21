@@ -821,7 +821,7 @@ var binarySearch = function(array, target) {
 // mergeSort([34,7,23,32,5,62]) // [5,7,23,32,34,62]
 // https://www.khanacademy.org/computing/computer-science/algorithms/merge-sort/a/divide-and-conquer-algorithms
 var mergeSort = function(array) {
-  // base case, array has length 1 or less, ignore (return nothing)
+  // base case, array has length 1 or less, return copy of input array
   // recursive case,
     // split array into two halfs,
     // recursive call on each half
@@ -861,7 +861,7 @@ var mergeSort = function(array) {
 var clone = function(input) {
   // assume:
     // only arrays or objects will be top level input
-    
+
   // create array of input or input's entries
   // filter to only elements that are objects or arrays
   // return reduction through filtered array,
