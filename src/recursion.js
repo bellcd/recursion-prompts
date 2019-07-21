@@ -230,19 +230,20 @@ var modulo = function(x, y) {
   if (y === 0) return NaN;
   if (x === 0) return 0;
   if (x === -0) return -0;
-
+  const minus = x - y;
+  const plus = x + y;
   if (x > 0 && y > 0) {
-    if (x - y < 0) return (x - y) + y;
-    return modulo(x - y, y);
+    if (minus < 0) return (minus) + y;
+    return modulo(minus, y);
   } else if (x < 0 && y < 0) {
-    if (x - y > 0) return (x - y) + y;
-    return modulo(x - y, y);
+    if (minus > 0) return (minus) + y;
+    return modulo(minus, y);
   } else if (x > 0 && y < 0) {
-    if (x + y < 0) return (x + y) - y;
-    return modulo(x + y, y);
+    if (plus < 0) return (plus) - y;
+    return modulo(plus, y);
   } else if (x < 0 && y > 0) {
-    if (x + y > 0) return (x + y) - y;
-    return modulo(x + y, y);
+    if (plus > 0) return (plus) - y;
+    return modulo(plus, y);
   }
 };
 
